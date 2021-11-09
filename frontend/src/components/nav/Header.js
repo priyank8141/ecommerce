@@ -65,7 +65,12 @@ const Header = () => {
             className="float-end"
           >
             <Menu.Item key="history" onClick={()=>{history.push("user/history");}}>History</Menu.Item>
-            <Menu.Item key="setting:2">Option 2</Menu.Item>
+
+            {user && user.role ==='subscriber' && (<Menu.Item><Link to='user/history'>Dashboard</Link></Menu.Item>) }
+
+            {user && user.role ==='admin' && (<Menu.Item><Link to='admin/dashboard'>Dashboard</Link></Menu.Item>) }
+
+
             <Menu.Item icon={<LogoutOutlined />} onClick={logout}>
               Logout
             </Menu.Item>

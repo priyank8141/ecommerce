@@ -13,7 +13,9 @@ import Registercomplete from "./pages/auth/Registercomplete";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import { currentUser } from "./functions/auth";
 import Userlog from "./pages/user/Userlog";
+import AdminDashboard from './pages/admin/AdminDashboard'
 import UserRoute from "./components/routes/UserRoute";
+import AdminRoute from "./components/routes/AdminRoute";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -57,7 +59,11 @@ const App = () => {
         <Route exact path="/register" component={Register} />
         <Route exact path="/complete" component={Registercomplete} />
         <Route exact path="/forgot/password" component={ForgotPassword} />
+
         <UserRoute exact path="/user/history" component={Userlog} />
+
+        <AdminRoute exact path="/admin/dashboard" component={AdminDashboard} />
+
       </Switch>
     </>
   );
