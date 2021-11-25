@@ -4,14 +4,14 @@ import AdminNav from '../../components/nav/AdminNav';
 import AdminDashboard from './AdminDashboard';
 import AdminProduct from './AdminProduct';
 import AdminProducts from './AdminProducts';
-import AdminCategory from './AdminCategory';
+import AdminCategory from './category/AdminCategory';
 import AdminSubCategory from './AdminSubCategory';
 import AdminCoupon from './AdminCoupon';
 import AdminPasswords from './AdminPasswords';
 
 export default function AdminMain() {
 
-    const [componentNo, setComponentNo] = useState(0);
+    const [componentNo, setComponentNo] = useState(3);
     const handleClick = (x) => {
         console.log("in hadleClick", x);
         setComponentNo(x);

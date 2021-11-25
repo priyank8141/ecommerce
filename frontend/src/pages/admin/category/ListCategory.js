@@ -1,8 +1,8 @@
 import React from 'react'
-export default function AdminCategory() {
+export default function ListCategory() {
     return (
         <div>
-            <>Admin Category</>
+            <>List Category</>
         </div>
     )
 }
