@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { auth } from "../../firebase";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { createOrUpdateUser } from "../../functions/auth";
 
@@ -31,19 +31,16 @@ const Registercomplete = ({ history }) => {
         email,
         window.location.href
       );
-      console.log("result", result);
 
       if (result.user.emailVerified) {
         //remove user form localstorage
         window.localStorage.removeItem("emailForRegistration");
         //get user token
         let user = auth.currentUser;
-        console.log("user", user);
         await user.updatePassword(password);
         const idTokenResult = await user.getIdToken();
         createOrUpdateUser(idTokenResult)
           .then((res) => {
-            console.log("res", res);
             dispatch({
               type: "LOGGED_IN_USER",
               payload: {
@@ -55,10 +52,9 @@ const Registercomplete = ({ history }) => {
               },
             });
           })
-          .catch((err)=>{console.log(err)});
+          .catch((err) => { console.log(err) });
 
         //redux Store
-        console.log("user", user, "idTokenResult", idTokenResult);
         //redirect
         history.push("/");
       }

@@ -21,7 +21,6 @@ const Header = () => {
   const { user } = useSelector((state) => ({ ...state }));
 
   const handleClick = (e) => {
-    console.log(e.key);
     setCurrent(e.key);
   };
 
@@ -64,11 +63,11 @@ const Header = () => {
             title={user.email.split("@")[0]}
             className="float-end"
           >
-            <Menu.Item key="history" onClick={()=>{history.push("user/history");}}>History</Menu.Item>
+            <Menu.Item key="history" onClick={() => { history.push("user/history"); }}>History</Menu.Item>
 
-            {user && user.role ==='subscriber' && (<Menu.Item><Link to='user/history'>Dashboard</Link></Menu.Item>) }
+            {user && user.role === 'subscriber' && (<Menu.Item><Link to='user/history'>Dashboard</Link></Menu.Item>)}
 
-            {user && user.role ==='admin' && (<Menu.Item><Link to='admin/dashboard'>Dashboard</Link></Menu.Item>) }
+            {user && user.role === 'admin' && (<Menu.Item><Link to='admin/dashboard'>Dashboard</Link></Menu.Item>)}
 
 
             <Menu.Item icon={<LogoutOutlined />} onClick={logout}>

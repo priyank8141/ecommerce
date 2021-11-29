@@ -13,7 +13,6 @@ export default function AdminMain() {
 
     const [componentNo, setComponentNo] = useState(3);
     const handleClick = (x) => {
-        console.log("in hadleClick", x);
         setComponentNo(x);
     };
 

@@ -23,13 +23,27 @@ export default function CreateCategory() {
     const handelSubmit = (e) => {
         e.preventDefault();
         setLoading(true)
-
         createCategory({ name }, user.token.token)
             .then((res) => {
-                console.log(res)
                 setLoading(false)
                 setName("")
                 toast.success(`${res.data.data.name} is created`)
+                loadcategories()
+            })
+            .catch((err) => {
+                console.log(err)
+                setLoading(false)
+                if (err.response.status === 400) toast.error(err.response.data)
+            })
+
+    }
+
+    const handleRemove = (slug) => {
+        setLoading(true)
+        removeCategory(slug, user.token.token)
+            .then((res) => {
+                setLoading(false)
+                toast.success(`${res.data.message}`)
                 loadcategories()
             })
             .catch((err) => {
@@ -53,8 +67,8 @@ export default function CreateCategory() {
             <>{createcategoryform()}</>
             {loading ? (<h3 className="text-danger">Loading</h3>) : (<h3>List Category</h3>)}
             {categories.map((c) => (
-                <div className="alert alert-secondary" key={c._id}>
-                    {c.name}<span className="btn btn-sm" style={{ float: 'right', marginLeft: 2 }} ><DeleteOutlined className="text-danger" /></span>
+                <div className="alert alert-secondary " key={c._id}>
+                    {c.name}<span onClick={() => handleRemove(c.slug)} className="btn btn-sm" style={{ float: 'right', marginLeft: 2 }} ><DeleteOutlined className="text-danger" /></span>
                     <Link to={'/'}><span className="btn btn-sm" style={{ float: 'right', marginLeft: 2 }}><EditOutlined className="text-warning" /></span></Link>
                 </div>
             ))}

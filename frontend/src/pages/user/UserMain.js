@@ -8,7 +8,6 @@ import { Row } from "antd";
 const UserMain = ({ compo = 0 }) => {
   const [componentNo, setComponentNo] = useState(0);
   const handleClick = (x) => {
-    console.log("in hadleClick", x);
     setComponentNo(x);
   };
 
