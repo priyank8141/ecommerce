@@ -2,7 +2,6 @@ const Category = require("../models/category");
 const slugify = require("slugify");
 
 exports.create = async (req, res) => {
-  console.log("in create");
   try {
     if (req.body.name == null) {
       return res.json({
@@ -106,7 +105,7 @@ exports.remove = async (req, res) => {
     }
 
     const deleted = await Category.remove({ slug: req.params.slug });
-    return res.status(400).send({
+    return res.status(200).send({
       message: "category Deleted Succesfully",
     });
   } catch (err) {
