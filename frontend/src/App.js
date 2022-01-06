@@ -12,8 +12,10 @@ import Home from "./pages/Home";
 import Registercomplete from "./pages/auth/Registercomplete";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import { currentUser } from "./functions/auth";
-import Userlog from "./pages/user/Userlog";
+import UserMain from "./pages/user/UserMain";
+import AdminMain from './pages/admin/AdminMain'
 import UserRoute from "./components/routes/UserRoute";
+import AdminRoute from "./components/routes/AdminRoute";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -22,10 +24,8 @@ const App = () => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
         const idTokenResult = await user.getIdTokenResult();
-        console.log("user data in state", user);
         currentUser(idTokenResult.token)
           .then((res) => {
-            console.log("res", res);
             dispatch({
               type: "LOGGED_IN_USER",
               payload: {
@@ -57,7 +57,11 @@ const App = () => {
         <Route exact path="/register" component={Register} />
         <Route exact path="/complete" component={Registercomplete} />
         <Route exact path="/forgot/password" component={ForgotPassword} />
-        <UserRoute exact path="/user/history" component={Userlog} />
+
+        <UserRoute exact path="/user/history" component={UserMain} />
+
+        <AdminRoute exact path="/admin/dashboard" component={AdminMain} />
+
       </Switch>
     </>
   );
