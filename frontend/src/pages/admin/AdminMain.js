@@ -11,7 +11,7 @@ import AdminPasswords from './AdminPasswords';
 
 export default function AdminMain() {
 
-    const [componentNo, setComponentNo] = useState(3);
+    const [componentNo, setComponentNo] = useState(0);
     const handleClick = (x) => {
         setComponentNo(x);
     };
